@@ -4,6 +4,7 @@
 """
 import typer
 from collections import OrderedDict
+from git_repository import create_repo
 import configparser  # git uses microsofts;s ini format and to read and write files in that we use this lib
 import hashlib
 from math import ceil
@@ -43,8 +44,10 @@ def hash_object():
 
 
 @app.command()
-def init():
-    pass
+def init(path: str):
+    """Command to initialise the repository
+    """
+    repo_create(path)
 
 
 @app.command()
