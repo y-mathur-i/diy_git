@@ -47,7 +47,7 @@ def hash_object():
 def init(path: str):
     """Command to initialise the repository
     """
-    repo_create(path)
+    create_repo(path)
 
 
 @app.command()
