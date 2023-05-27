@@ -4,7 +4,7 @@
 """
 import typer
 from collections import OrderedDict
-from git_repository import create_repo
+from utils.git_repository import create_repo
 import configparser  # git uses microsofts;s ini format and to read and write files in that we use this lib
 import hashlib
 from math import ceil

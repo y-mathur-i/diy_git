@@ -2,7 +2,7 @@
 """
 import os
 import configparser
-from repo_utils import repo_file, repo_dir, repo_default_config
+from utils.repo_utils import repo_file, repo_dir, repo_default_config
 
 
 class GitRepository:
@@ -20,7 +20,7 @@ class GitRepository:
 
     def __init__(self, path, force=False) -> None:
         self.worktree = path
-        self.gitdir = os.path.join(paths=[path, ".git"])
+        self.gitdir = os.path.join(path, ".git")
 
         assert (force or os.path.isdir(self.gitdir)), "Path does not contain a repository"
 
@@ -51,7 +51,7 @@ def create_repo(path) -> GitRepository:
 
     if os.path.exists(repo.worktree):
         assert os.path.isdir(repo.worktree), Exception(f"{repo.worktree} is not a directory")
-        assert not os.listdir(repo.worktree), Exception(f"Dir is not empty")
+        assert os.listdir(repo.worktree), Exception(f"Dir is not empty")
     else:
         os.makedirs(repo.worktree)
 
@@ -71,3 +71,8 @@ def create_repo(path) -> GitRepository:
         config.write(file)
     
     return repo
+
+
+
+if __name__=="__main__":
+    create_repo("/workspaces/diy_git/sample_git_repo/")
