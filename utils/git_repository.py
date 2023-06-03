@@ -73,6 +73,23 @@ def create_repo(path) -> GitRepository:
     return repo
 
 
+def find_repo(path="*", required=True):
+    """Method to find the root of repo .i.e the .git dir inside the dir
+        will try for parent if not there.
+    """
+    path = os.path.realpath(path)
+    if os.path.isdir(os.path.join(path, ".git")):
+        return GitRepository(path)
+    parent = os.path.realpath(os.path.join(path, ".."))
+
+    if parent == path:
+        if required:
+            raise Exception("No valid git repo found")
+        else:
+            return
+    
+    return find_repo(parent, required)
+
 
 if __name__=="__main__":
     create_repo("/workspaces/diy_git/sample_git_repo/")

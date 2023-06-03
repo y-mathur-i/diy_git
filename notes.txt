@@ -1,0 +1,21 @@
+Step 1: init git repo and being ability to find the repo root.
+        .git dir with following objects
+        ├── branches
+        ├── config
+        ├── description
+        ├── head
+        ├── objects
+        └── refs
+            ├── head
+            └── tags
+
+Step 2: writing to the objects inside the git repo.
+    git hash-object -> converts filt to git object
+    git cat-file prints it
+    But what is this object?
+        - content influences the name as it's hash is created using the content.
+    Git is content-addressed file system
+    the path of objects is calculated using sha-1 hash
+    first two chars -> dor for the file 
+    objets is stored like
+    [type header] [size of object ascii digit]
